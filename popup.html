@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cover Letter Generator</title>
+    <style>
+        body {
+            width: 500px;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .section {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .status-text {
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .char-count {
+            font-size: 0.8em;
+            color: #666;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- API Key Section -->
+        <div class="section">
+            <div class="input-group">
+                <label for="apiKey">Gemini API Key:</label>
+                <input type="password" id="apiKey" placeholder="Enter your API key">
+                <button id="saveApiKey">Save API Key</button>
+                <div id="apiKeyStatus" class="status-text"></div>
+            </div>
+        </div>
+
+        <!-- User Information Section -->
+        <div class="section">
+            <h3>User Information</h3>
+            <div class="input-group">
+                <input type="text" id="userName" placeholder="Full Name">
+                <input type="tel" id="userPhone" placeholder="Phone Number">
+                <input type="email" id="userEmail" placeholder="Email">
+                <input type="text" id="userCity" placeholder="City">
+                <input type="text" id="userState" placeholder="State">
+                <input type="text" id="userZip" placeholder="ZIP Code">
+                <button id="saveUserInfo">Save User Info</button>
+                <div id="userInfoStatus" class="status-text"></div>
+            </div>
+        </div>
+
+        <!-- Resume and Job Description Section -->
+        <div class="section">
+            <div class="input-group">
+                <label for="resumeText">Your Resume:</label>
+                <textarea id="resumeText" rows="6" placeholder="Paste your resume text here"></textarea>
+                <div id="charCount" class="char-count"></div>
+            </div>
+            <div class="input-group">
+                <label for="jobDescriptionText">Job Description:</label>
+                <textarea id="jobDescriptionText" rows="6" placeholder="Paste the job description here"></textarea>
+                <div id="jobDescCharCount" class="char-count"></div>
+            </div>
+            <button id="generate">Generate Cover Letter</button>
+            <div id="status" class="status-text"></div>
+        </div>
+
+        <!-- Output Section -->
+        <div class="section">
+            <h3>Generated Cover Letter</h3>
+            <div id="output" style="white-space: pre-wrap;"></div>
+            <button id="downloadButton" style="display: none;">Download Cover Letter</button>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
