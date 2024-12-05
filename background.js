@@ -11,6 +11,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     request.resumeText,
                     request.apiKey
                 );
+                
+                // Store the generated cover letter
+                await chrome.storage.local.set({
+                    'generatedCoverLetter': coverLetter
+                });
+                
                 sendResponse({ coverLetter });
             } catch (error) {
                 console.error('Generation error:', error);
@@ -21,9 +27,24 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
+// Add function to retrieve stored cover letter
+async function getStoredCoverLetter() {
+    const result = await chrome.storage.local.get(['generatedCoverLetter']);
+    return result.generatedCoverLetter || '';
+}
+
 // 1. Update the function definition to accept apiKey parameter
 const generateCoverLetter = async (jobDescription, resumeText, apiKey) => {
     try {
+        // Get stored data
+        const stored = await chrome.storage.local.get(['generatedCoverLetter', 'lastJobDescription']);
+        
+        // Check if job description is the same
+        if (stored.generatedCoverLetter && stored.lastJobDescription === jobDescription) {
+            console.log('Using stored cover letter - same job description');
+            return stored.generatedCoverLetter;
+        }
+
         if (!apiKey) {
             throw new Error('API key is required');
         }
@@ -36,7 +57,7 @@ const generateCoverLetter = async (jobDescription, resumeText, apiKey) => {
 
         // Use placeholders if department or campus are not found
         const department = 'Department';
-        const campus = 'Campus';
+        const state = 'State in the US where this job is located';
 
         const prompt = `
 You are a professional cover letter generator. Create a compelling cover letter following this EXACT format:
@@ -50,7 +71,7 @@ ${currentDate}
 
 Hiring Manager
 ${department}
-Company Name, ${campus}, State
+Company Name, ${state}
 
 Dear Hiring Manager,
 
@@ -135,6 +156,13 @@ And match with experience from this resume: ${resumeText}`;
         }
 
         const generatedText = data.candidates[0].content.parts[0].text;
+        
+        // After successful generation, store both letter and job description
+        await chrome.storage.local.set({
+            'generatedCoverLetter': generatedText,
+            'lastJobDescription': jobDescription
+        });
+
         return generatedText;
 
     } catch (error) {
