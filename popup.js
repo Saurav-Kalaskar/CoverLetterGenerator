@@ -234,7 +234,7 @@ async function restoreState() {
 
 // Update character count function
 function updateCharCount(textElement, countElement) {
-    const MAX_CHARS = 3000;
+    const MAX_CHARS = 10000;
     const currentLength = textElement.value.length;
     countElement.textContent = `${currentLength}/${MAX_CHARS}`;
     
