@@ -37,13 +37,21 @@ async function getStoredCoverLetter() {
 const generateCoverLetter = async (jobDescription, resumeText, apiKey) => {
     try {
         // Get stored data
-        const stored = await chrome.storage.local.get(['generatedCoverLetter', 'lastJobDescription']);
+        const stored = await chrome.storage.local.get([
+            'generatedCoverLetter',
+            'lastJobDescription',
+            'lastResumeText'
+        ]);
         
-        // Check if job description is the same
-        if (stored.generatedCoverLetter && stored.lastJobDescription === jobDescription) {
-            console.log('Using stored cover letter - same job description');
+        // Generate new cover letter if EITHER job description OR resume has changed
+        if (stored.generatedCoverLetter && 
+            stored.lastJobDescription === jobDescription && 
+            stored.lastResumeText === resumeText) {
+            console.log('Using stored cover letter - no changes detected');
             return stored.generatedCoverLetter;
         }
+        
+        console.log('Generating new cover letter - detected changes in resume or job description');
 
         if (!apiKey) {
             throw new Error('API key is required');
@@ -157,10 +165,11 @@ And match with experience from this resume: ${resumeText}`;
 
         const generatedText = data.candidates[0].content.parts[0].text;
         
-        // After successful generation, store both letter and job description
+        // After successful generation, store the new values
         await chrome.storage.local.set({
             'generatedCoverLetter': generatedText,
-            'lastJobDescription': jobDescription
+            'lastJobDescription': jobDescription,
+            'lastResumeText': resumeText
         });
 
         return generatedText;
