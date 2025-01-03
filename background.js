@@ -105,6 +105,7 @@ Dear Hiring Manager,
 - Include quantifiable results
 - Connect directly to job requirements
 - Use active voice and specific examples
+- Emphasize core job essential duties specifically mentioned in the job description
 
 [Third Paragraph - Demonstrate additional value:]
 - Highlight complementary skills
@@ -117,6 +118,7 @@ Dear Hiring Manager,
 - Reference specific department goals
 - Include clear call to action
 - Keep professional and confident
+- MUST include this exact availability statement: "I am available throughout the spring semester on all weekdays except Tuesday, and can attend classes at both the Tempe and Polytechnic campuses."
 
 End with:
 Sincerely,
@@ -130,6 +132,8 @@ Style Requirements:
 - Include technical terms appropriately
 - Avoid clichés and generic phrases
 - No headers or style labels in the actual letter
+- Ensure strong alignment between resume experience and job requirements
+- Put special emphasis on matching core essential duties from the job description
 
 Use this job description to identify relevant skills and requirements: ${jobDescription}
 And match with experience from this resume: ${resumeText}`;
