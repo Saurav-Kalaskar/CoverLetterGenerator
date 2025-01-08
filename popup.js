@@ -126,6 +126,12 @@ elements.generate.addEventListener("click", async () => {
         elements.downloadButton.style.display = 'block';
         showStatus('status', "Cover letter generated successfully!", 'success');
 
+        // Store the current job description and resume text for future checks
+        await chrome.storage.local.set({
+            lastJobDescription: jobDescription,
+            lastResumeText: resumeText
+        });
+
     } catch (error) {
         console.error('Error:', error);
         showStatus('status', 'An error occurred while generating the cover letter.', 'error');
@@ -145,30 +151,42 @@ function showStatus(elementId, message, type = '') {
     }
 }
 
-// Download cover letter function
-function downloadCoverLetter(content) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const fileName = `Cover_Letter_${timestamp}.txt`;
+// Add this helper function to extract job requisition ID
+function extractJobRequisitionId(jobDescription) {
+    // Look specifically for "Job Requisition ID"
+    const pattern = /Job Requisition ID\s*:?\s*([A-Z0-9-]+)/i;
+    const match = jobDescription.match(pattern);
     
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
+    if (match && match[1]) {
+        return `_${match[1].trim()}`; // Return with underscore prefix
+    }
+    
+    return ''; // Return empty string if not found
+}
+
+// Modify the download button click handler
+elements.downloadButton.addEventListener('click', () => {
+    const coverLetterText = elements.output.textContent;
+    const jobDescription = elements.jobDescriptionText.value;
+    
+    if (!coverLetterText) {
+        alert('Please generate a cover letter first.');
+        return;
+    }
+
+    const jobReqId = extractJobRequisitionId(jobDescription);
+    const fileName = `Saurav_Kalaskar_Cover_Letter${jobReqId}.txt`;
+
+    // Create blob and download
+    const blob = new Blob([coverLetterText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = fileName;
     document.body.appendChild(a);
     a.click();
-    window.URL.revokeObjectURL(url);
     document.body.removeChild(a);
-}
-
-// Add event listener for download button
-elements.downloadButton.addEventListener('click', () => {
-    const coverLetter = elements.output.textContent;
-    if (coverLetter) {
-        downloadCoverLetter(coverLetter);
-    } else {
-        showStatus('status', 'No cover letter to download.', 'error');
-    }
+    URL.revokeObjectURL(url);
 });
 
 // Load saved API key and user information on popup open
