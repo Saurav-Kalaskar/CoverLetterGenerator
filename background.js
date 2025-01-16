@@ -83,57 +83,95 @@ Company Name, ${state}
 
 Dear Hiring Manager,
 
-[FIRST PARAGRAPH GUIDELINES - Create a unique, engaging opening that:]
-- Uses creative analogies (can be technical, innovative, or industry-relevant)
-- Connects real-world/ ongoing technical concepts to your professional capabilities
-- Shows understanding of the role's technical requirements
-- Demonstrates immediate value proposition
-- Can reference:
-  * Technology concepts or principles
-  * Industry trends or challenges
-  * Educational or research impact
-  * Innovation and problem-solving approaches
-  * System architecture or infrastructure metaphors
-  * Real-world technical scenarios
-- Must flow naturally into your qualifications
-- Should be unique and not formulaic
-- Should be broad to let the reader know that you are a good fit for the job
+GENERATE A NATURAL, ENGAGING COVER LETTER USING THESE GUIDELINES:
 
-[REMAINING PARAGRAPHS:]
-[Second Paragraph - Highlight specific achievements:]
-- Focus on most relevant technical experience
-- Include quantifiable results
+1. START WITH AN ATTENTION-GRABBING HOOK (choose one approach):
+
+STATISTICS & NUMBERS HOOK:
+- "In the 4.5 minutes it takes to read this cover letter, [X] ASU students will have walked through the Memorial Union doors. As someone who thrives on..."
+- "It takes 7 positive experiences to offset one negative interaction at a help desk. That's why I've developed..."
+- "The average college student spends 17 hours per week studying - but only 20% of that time is truly productive. This insight drove me..."
+
+STORY-BASED HOOK:
+- "Last Tuesday, when a student rushed into the tutoring center five minutes before closing, panic-stricken about their statistics final..."
+- "When the printer broke down during finals week, with 50 students in line and growing tension in the air..."
+- "Three hundred event attendees, one crashed registration system, and fifteen minutes until doors open. That's when I discovered..."
+
+PROBLEM-SOLVING HOOK:
+- "The moment I transformed a chaotic stack of research papers into a searchable digital database, I realized..."
+- "What started as a simple spreadsheet to track gym equipment maintenance turned into a facility-wide optimization system..."
+- "After watching students struggle with room bookings for the fifth time that day, I knew there had to be a better way..."
+
+QUESTION OR PUZZLE HOOK:
+- "What do a library catalog, a GPS, and a great research assistant have in common? They all help people find exactly what they need..."
+- "How do you turn a 45-minute wait time into a 5-minute solution? This question led me to revolutionize our department's..."
+- "Ever wondered why some study groups thrive while others struggle? As a peer tutor, I've cracked the code..."
+
+CHALLENGE SCENARIO HOOK:
+- "Picture this: It's orientation week. 2,000 new students. One information desk. And a mission to make every interaction memorable..."
+- "Imagine turning the most dreaded part of a student's day - waiting in line - into an opportunity for community building..."
+- "Consider the challenge: Make complex research databases as intuitive as social media. That's exactly what I accomplished when..."
+
+INNOVATION HOOK:
+- "By combining a simple QR code system with student feedback, I transformed our department's service rating from 3.2 to 4.8 stars..."
+- "Who knew that a late-night coding session would lead to a parking optimization system that now serves 500+ students daily?"
+- "They said the old filing system was 'good enough.' But good enough isn't in my vocabulary..."
+
+IMPACT STORY HOOK:
+- "One simple process change led to a 40% reduction in wait times. This experience taught me the power of..."
+- "From helping one struggling student to creating a peer support network of 50+ volunteers, my journey in student services..."
+- "When I started as a lab assistant, equipment downtime was 30%. Three months later, it was down to 5%. Here's how..."
+
+2. LETTER STRUCTURE AND FLOW:
+
+First Paragraph:
+- Begin with chosen creative hook
+- Connect hook naturally to position and department
+- Briefly mention most relevant qualification
+- Keep engaging but professional
+
+Second Paragraph:
+- Detail relevant experience
+- Include specific achievements
 - Connect directly to job requirements
-- Use active voice and specific examples
-- Emphasize core job essential duties specifically mentioned in the job description
+- Use numbers and metrics when possible
 
-[Third Paragraph - Demonstrate additional value:]
-- Highlight complementary skills
+Third Paragraph:
+- Highlight unique skills
 - Show understanding of department needs
-- Include relevant academic or project experience
-- Demonstrate growth mindset
+- Connect academic/project work to role
+- Emphasize relevant certifications or training
 
-[Final Paragraph - Strong closing:]
-- Express genuine interest in the role
-- Reference specific department goals
+Fourth Paragraph:
+- Share specific plans/ideas for role
+- Demonstrate knowledge of department goals
+- Show enthusiasm for contribution
+- Keep focused on value you'll bring
+
+Closing:
+- Reaffirm interest
+- Confirm availability for specific campus/schedule
 - Include clear call to action
-- Keep professional and confident
-- MUST include this exact availability statement: "I am available throughout the spring semester on all weekdays except Tuesday, and can attend classes at both the Tempe and Polytechnic campuses."
 
-End with:
-Sincerely,
-Your Name
+3. WRITING GUIDELINES:
+- Use active voice throughout
+- Include specific examples
+- Keep paragraphs focused
+- Maintain professional but warm tone
+- Match department's communication style
+- Use relevant keywords naturally
+- Ensure smooth transitions between paragraphs
+- Total length: one page maximum
 
-Style Requirements:
-- MUST include all header information exactly as shown above
-- Create unique, engaging openings not limited to any specific templates
-- Maintain professional tone while being creative
-- Use natural transitions between paragraphs
-- Include technical terms appropriately
-- Avoid clichés and generic phrases
-- No headers or style labels in the actual letter
-- Ensure strong alignment between resume experience and job requirements
-- Put special emphasis on matching core essential duties from the job description
+4. CUSTOMIZE BASED ON:
+- Specific job requirements
+- Department culture
+- Campus location
+- Schedule requirements
+- Technical requirements
+- Student service aspects
+
+Note: Generate the letter as a flowing document without any section markers. Each paragraph should transition naturally to the next, creating an engaging narrative that showcases your qualifications and enthusiasm for the role.
 
 Use this job description to identify relevant skills and requirements: ${jobDescription}
 And match with experience from this resume: ${resumeText}`;
