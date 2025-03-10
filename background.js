@@ -177,7 +177,7 @@ Use this job description to identify relevant skills and requirements: ${jobDesc
 And match with experience from this resume: ${resumeText}`;
 
         const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apiKey}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
             {
                 method: 'POST',
                 headers: {
@@ -194,20 +194,20 @@ And match with experience from this resume: ${resumeText}`;
         );
 
         if (!response.ok) {
-            throw new Error(`API request failed: ${response.statusText}`);
+            const errorData = await response.json();
+            console.error('API error details:', errorData);
+            throw new Error(`API request failed: ${errorData.error?.message || response.statusText}`);
         }
 
         const data = await response.json();
         
-        // Gemini API response format has this structure:
-        // { candidates: [{ content: { parts: [{ text: "..." }] } }] }
         if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
             throw new Error('Invalid response format from API');
         }
 
         const generatedText = data.candidates[0].content.parts[0].text;
         
-        // After successful generation, store the new values
+        // Store the results
         await chrome.storage.local.set({
             'generatedCoverLetter': generatedText,
             'lastJobDescription': jobDescription,
